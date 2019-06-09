@@ -1,7 +1,6 @@
 package com.dogeared.controllers;
 
 import com.dogeared.models.User;
-import com.dogeared.models.data.DogearDao;
 import com.dogeared.models.data.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 
