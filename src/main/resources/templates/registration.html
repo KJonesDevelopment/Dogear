@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org/">
 <head>
 
 </head>
 <body>
-<form th:action="@{/registration} "method="post">
+<form th:action="@{/registration} " method="post">
     <div>
         <label for="username"> Username </label>
         <input id="username" name="username" type="text" th:value="${username}"/>

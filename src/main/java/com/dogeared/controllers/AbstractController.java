@@ -8,9 +8,7 @@ import javax.servlet.http.HttpSession;
 
 public abstract class AbstractController {
 
-  @Autowired
-  protected UserDao userDao;
-
+  @Autowired protected UserDao userDao;
 
   public static final String userSessionKey = "user_id";
 
@@ -23,5 +21,4 @@ public abstract class AbstractController {
   protected void setUserInSession(HttpSession session, User user) {
     session.setAttribute(userSessionKey, user.getUid());
   }
-
 }

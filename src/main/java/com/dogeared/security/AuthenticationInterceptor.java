@@ -14,20 +14,23 @@ import java.util.List;
 
 public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
 
-  @Autowired
-  UserDao userDao;
+  @Autowired UserDao userDao;
 
   @Override
-  public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
+  public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+      throws IOException {
 
     List<String> authPages = Arrays.asList("/dogear");
 
-//     Require sign-in for auth pages
-    if ( authPages.contains(request.getRequestURI()) ) {
+    System.out.println("incoming request -> " + request.getRequestURI());
+
+    //     Require sign-in for auth pages
+    if (authPages.contains(request.getRequestURI())) {
 
       boolean isLoggedIn = false;
       User user;
-      Integer userId = (Integer) request.getSession().getAttribute(AbstractController.userSessionKey);
+      Integer userId =
+          (Integer) request.getSession().getAttribute(AbstractController.userSessionKey);
 
       if (userId != null) {
         user = userDao.findByUid(userId);
@@ -46,5 +49,4 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
 
     return true;
   }
-
 }

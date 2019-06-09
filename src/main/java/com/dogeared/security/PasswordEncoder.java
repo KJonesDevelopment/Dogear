@@ -1,4 +1,3 @@
 package com.dogeared.security;
 
-public class PasswordEncoder {
-}
+public class PasswordEncoder {}

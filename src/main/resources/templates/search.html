@@ -28,21 +28,21 @@
 
         <p>
             <label for="searchTerm">Keyword:</label>
-            <input type="text" name="searchTerm" id="searchTerm" />
+            <input type="text" name="searchTerm" id="searchTerm"/>
         </p>
 
-        <input type="submit" value="Search" />
+        <input type="submit" value="Search"/>
     </form>
 
-    <hr />
+    <hr/>
 
     <div th:each="job :${jobs}">
-        <p  th:each="info : ${job}" th:text="${#strings.capitalizeWords(info.key)} + ': ' + ${info.value}"></p>
-        <hr />
+        <p th:each="info : ${job}" th:text="${#strings.capitalizeWords(info.key)} + ': ' + ${info.value}"></p>
+        <hr/>
     </div>
-<!--    <div th:if="${#lists.isEmpty(jobs)}">-->
-<!--        <p>No Search Results Returned.  Please try another value. </p>-->
-<!--    </div>-->
+    <!--    <div th:if="${#lists.isEmpty(jobs)}">-->
+    <!--        <p>No Search Results Returned.  Please try another value. </p>-->
+    <!--    </div>-->
     <div>
         <p th:text="${noJobs}"></p>
     </div>
