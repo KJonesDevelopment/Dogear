@@ -25,19 +25,19 @@ public class RegisterController extends AbstractController{
   public String registration(@RequestParam String username,
                              @RequestParam String password,
                              @RequestParam String verify,
-//                             @ModelAttribute @Valid User newUser,
-//                             Errors errors,
+                             @ModelAttribute @Valid User newUser,
+                             Errors errors,
                              HttpServletRequest request,
                              Model model) {
 
-//    if (errors.hasErrors()) {
-//      model.addAttribute(errors);
-//      System.out.println(errors);
-//      return "registration";
-//    }
-//
-//    userDao.save(newUser);
-//    System.out.println(newUser);
+    if (errors.hasErrors()) {
+      model.addAttribute("errors", errors);
+      System.out.println(errors);
+      return "registration";
+    }
+
+    userDao.save(newUser);
+    System.out.println(newUser);
 
     return "redirect:home";
   }

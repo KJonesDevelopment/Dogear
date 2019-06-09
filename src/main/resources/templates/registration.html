@@ -5,7 +5,7 @@
 
 </head>
 <body>
-<form method="post">
+<form th:action="@{/registration} "method="post">
     <div>
         <label for="username"> Username </label>
         <input id="username" name="username" type="text" th:value="${username}"/>
@@ -19,7 +19,7 @@
     <div>
         <label for="verify"> Verify </label>
         <input id="verify" name="verify" type="password">
-        <span class="error" th:text="${usernameError}"></span>
+        <span class="error" th:text="${errors}"></span>
     </div>
     <button type="submit">Register</button>
 </form>
