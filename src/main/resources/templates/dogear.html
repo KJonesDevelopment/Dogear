@@ -1,11 +1,84 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org/">
 <head>
 
 </head>
 <body>
 
 <center><h1>you are probably logged in, nice work.</h1></center>
+
+<center>
+    <form th:action="@{/dogear/add/media_type} " method="post">
+
+        <select for="mediaType" name="mediaType">
+            <option value="MOVIE">Movie</option>
+            <option value="BOOK">Book</option>
+            <option value="AUDIO_BOOK">Audio Book</option>
+            <option value="PODCAST">Podcast</option>
+        </select>
+
+        <!--        <select th:field="*{media_type}">-->
+        <!--            <option th:value="'book'" th:text="Book"></option>-->
+        <!--            <option th:value="'podcast'" th:text="Podcast"></option>-->
+        <!--            <option th:value="'movie'" th:text="Movie"></option>-->
+        <!--        </select>-->
+
+        <div>
+            <label for="title"> Title </label>
+            <input id="title" name="title" type="text">
+        </div>
+
+        <button type="submit">PERSIST!!!!</button>
+    </form>
+</center>
+
+<br>
+<hr>
+<br>
+
+<center>
+    <form th:action="@{/dogear/add/dogear} " method="post">
+
+        <div class="form-group blu-margin">
+            <select class="form-control" id="media">
+                <option value="0">select media</option>
+                <option th:each="media : ${medias}" th:value="${media.uid}" th:text="${media.title}"></option>
+            </select>
+        </div>
+
+        <div>
+            <label for="earmark">Ear Mark</label>
+            <input id="earmark" name="earmark" type="text" th:value="${earmark}"/>
+        </div>
+
+        <div>
+            <label for="note">Notes</label>
+            <input id="note" name="note" type="text" th:value="${note}"/>
+        </div>
+        <button type="submit">PERSIST!!!!</button>
+    </form>
+</center>
+
+<br>
+<hr>
+<br>
+
+<center>
+    <div th:if="${not #lists.isEmpty(dogears)}">
+        <h2>Dogears</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+            </tr>
+            <tr th:each="dogear : ${dogears}">
+                <td th:text="${dogear.uid}"></td>
+                <td th:text="${dogear.note}"></td>
+            </tr>
+        </table>
+    </div>
+
+</center>
 
 </body>
 </html>

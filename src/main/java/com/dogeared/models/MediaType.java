@@ -1,10 +1,10 @@
 package com.dogeared.models;
 
 public enum MediaType {
-  MOVIE("Movie"),
-  BOOK("Book"),
-  AUDIO_BOOK("Audio Book"),
-  PODCAST("Podcast");
+  MOVIE("movie"),
+  BOOK("book"),
+  AUDIO_BOOK("audioBook"),
+  PODCAST("podcast");
 
   private final String name;
 
