@@ -12,4 +12,5 @@ import java.util.List;
 public interface MediaDao extends CrudRepository<Media, Integer> {
 
   List<Media> findByUserUid(int userUid);
+
 }

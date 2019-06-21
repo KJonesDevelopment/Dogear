@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org/">
-<head>
-
+<head th:replace="fragments :: head">
 </head>
 <body>
-<form th:action="@{/registration} " method="post">
+<div th:replace="fragments :: page-header"></div>
+<div class="container body-content">
+<form th:action="@{/registration}" method="post">
     <div>
         <label for="username"> Username </label>
         <input id="username" name="username" type="text" th:value="${username}"/>
@@ -22,6 +23,7 @@
     </div>
     <button type="submit">Register</button>
 </form>
+</div>
 
 </body>
 </html>

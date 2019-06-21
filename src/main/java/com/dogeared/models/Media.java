@@ -3,6 +3,10 @@ package com.dogeared.models;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
+import com.dogeared.models.data.MediaDao;
+import org.springframework.beans.factory.annotation.Autowired;
+
 
 @Entity
 @Table(name = "media")
@@ -85,4 +89,7 @@ public class Media extends AbstractEntity {
   private void updated() {
     this.modified = new Date();
   }
+
+
+
 }

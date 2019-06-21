@@ -20,4 +20,8 @@ public abstract class AbstractController {
   protected void setUserInSession(HttpSession session, User user) {
     session.setAttribute(userSessionKey, user.getUid());
   }
+
+  protected void removeUserFromSession(HttpSession session) {
+    session.invalidate();
+  }
 }

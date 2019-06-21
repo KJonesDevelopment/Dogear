@@ -61,23 +61,38 @@ public class DogearController extends AbstractController {
       throw new Exception("user was null");
     }
 
-    return "dogear";
+    return "redirect:/dogear";
   }
 
   @RequestMapping(value = "/dogear/add/dogear", method = RequestMethod.POST)
   public String addEarMark(
-      @RequestParam String earmark, @RequestParam String note, HttpSession session) throws Exception {
+      @RequestParam String earmark, @RequestParam String note, @RequestParam String tempMediaId, HttpSession session) throws Exception {
     System.out.println("made it to the dogear addEarMark");
+    int mediaUid = Integer.valueOf(tempMediaId);
     User user = getUserFromSession(session);
+    Media thisMedia = findByMediaUid(mediaUid, user);
 
     if(user != null) {
-      Dogear dogear = new Dogear(earmark, note, user);
+      Dogear dogear = new Dogear(earmark, note, user, thisMedia);
       dogearDao.save(dogear);
     } else {
       throw new Exception("user was null");
     }
 
-    return "dogear";
+    return "redirect:/dogear";
+  }
+
+
+  public Media findByMediaUid(int id, User user) {
+    List<Media> medias = mediaDao.findByUserUid(user.getUid());
+    Media media = null;
+    for (int i = 0; i <medias.size(); i++) {
+      Media temp = medias.get(i);
+      if (temp.getUid() == id) {
+        media = temp;
+      }
+    }
+    return media;
   }
 
 }

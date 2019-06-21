@@ -29,6 +29,6 @@ public class RegisterController extends AbstractController {
 
     userDao.save(newUser);
 
-    return "redirect:login";
+    return "redirect:/login";
   }
 }

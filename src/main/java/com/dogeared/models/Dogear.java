@@ -11,17 +11,19 @@ public class Dogear extends AbstractEntity {
   private String earmark;
   private String note;
   private User user;
+  private Media media;
   private Date created;
   private Date modified;
 
   public Dogear() {}
 
-  public Dogear(String earmark, String note, User user) {
+  public Dogear(String earmark, String note, User user, Media media) {
 
     super();
 
     this.earmark = earmark;
     this.note = note;
+    this.media = media;
     this.user = user;
     this.created = new Date();
     this.updated();
@@ -54,10 +56,21 @@ public class Dogear extends AbstractEntity {
     return user;
   }
 
-  @SuppressWarnings("unused")
+
   private void setUser(User user) {
     this.user = user;
   }
+
+
+  @ManyToOne
+  public Media getMedia() {
+    return media;
+  }
+
+  public void setMedia(Media media) {
+    this.media = media;
+  }
+
 
   @NotNull
   @OrderColumn
@@ -77,7 +90,6 @@ public class Dogear extends AbstractEntity {
     return modified;
   }
 
-  @SuppressWarnings("unused")
   private void setModified(Date modified) {
     this.modified = modified;
   }

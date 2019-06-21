@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org/">
-<head>
-
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head">
 </head>
 <body>
+<div th:replace="fragments :: page-header"></div>
 
-<center><h1>you are probably logged in, nice work.</h1></center>
+<div class="container body-content">
+<div>
 
-<center>
     <form th:action="@{/dogear/add/media_type} " method="post">
 
         <select for="mediaType" name="mediaType">
@@ -17,32 +16,26 @@
             <option value="PODCAST">Podcast</option>
         </select>
 
-        <!--        <select th:field="*{media_type}">-->
-        <!--            <option th:value="'book'" th:text="Book"></option>-->
-        <!--            <option th:value="'podcast'" th:text="Podcast"></option>-->
-        <!--            <option th:value="'movie'" th:text="Movie"></option>-->
-        <!--        </select>-->
-
         <div>
             <label for="title"> Title </label>
             <input id="title" name="title" type="text">
         </div>
 
-        <button type="submit">PERSIST!!!!</button>
+        <button type="submit">Add</button>
     </form>
-</center>
+</div>
 
 <br>
 <hr>
 <br>
 
-<center>
+<div>
     <form th:action="@{/dogear/add/dogear} " method="post">
 
         <div class="form-group blu-margin">
-            <select class="form-control" id="media">
-                <option value="0">select media</option>
-                <option th:each="media : ${medias}" th:value="${media.uid}" th:text="${media.title}"></option>
+            <select class="form-control" id="media" name="tempMediaId">
+                <option value="0">Select Media</option>
+                <option th:each="media : ${medias}" th:value="${media.uid}" th:text="${media.mediaType} + ': ' + ${media.title}"></option>
             </select>
         </div>
 
@@ -55,30 +48,24 @@
             <label for="note">Notes</label>
             <input id="note" name="note" type="text" th:value="${note}"/>
         </div>
-        <button type="submit">PERSIST!!!!</button>
+        <button type="submit">Remember This</button>
     </form>
-</center>
+</div>
 
-<br>
-<hr>
-<br>
 
-<center>
+<div>
     <div th:if="${not #lists.isEmpty(dogears)}">
         <h2>Dogears</h2>
-        <table class="table table-striped">
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-            </tr>
-            <tr th:each="dogear : ${dogears}">
-                <td th:text="${dogear.uid}"></td>
-                <td th:text="${dogear.note}"></td>
-            </tr>
-        </table>
+        <div class="table table-striped">
+            <div th:each="dogear : ${dogears}" class="dogear-container">
+                <p th:text="'Title: ' + ${dogear.media.title}"></p>
+                <p th:text="'Earmark: ' + ${dogear.earmark}" class="dogear"></p>
+                <p th:text="'Note: ' + ${dogear.note}" class="dogear"></p>
+            </div>
+        </div>
     </div>
 
-</center>
+</div>
 
 </body>
 </html>
